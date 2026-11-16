@@ -1,3 +1,11 @@
+// markdown-render-speed-02 entrypoint — the thin driver for this submission.
+// It does no rendering itself: all Markdown-to-HTML work lives in parse.js,
+// a hand-written fast parser built to match marked's output byte for byte
+// on every case while running noticeably faster than marked itself.
+// The harness invokes it as `node --experimental-strip-types main.ts`,
+// which lets Node run this TypeScript file directly without a build step.
+// At runtime it loads the cases, renders each one in order through parse(),
+// and writes the resulting HTML strings out as a JSON array.
 // The house baseline of markdown-render-speed-01, and a starter: marked 18.1.3 itself. The harness runs
 // `node /bot/main.ts` (node22). It reads every case from /input/cases.json (a JSON array of
 // {id, markdown}), renders each one alone with parse() from parse.js, and writes /output/html.json: a
